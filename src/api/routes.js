@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 import multer from 'multer';
-import authMiddleware from './middlewares/auth';
-import multerConfig from './config/multer';
+import authMiddleware from '../middlewares/auth';
+import multerConfig from '../config/multer';
 
-import ProntuarioController from './app/controllers/ProntuarioController';
+import ProntuarioController from './controllers/ProntuarioController';
 
 const routes = new Router();
 

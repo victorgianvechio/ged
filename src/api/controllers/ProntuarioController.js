@@ -2,8 +2,9 @@
 
 import { PrismaClient } from '@prisma/client';
 import pdf2html from 'pdf2html';
+// import fs from 'fs';
 
-import ProntuarioModel from '../schemas/ProntuarioSchema';
+import ProntuarioModel from '../../app/schemas/ProntuarioSchema';
 
 const prisma = new PrismaClient();
 
@@ -86,6 +87,9 @@ class ProntuarioController {
         posPaciente + dif - 1
       );
 
+      // const arquivo = fs.readFileSync(file.path);
+      // console.log(arquivo);
+
       // Salva no postgres
       const post = await prisma.prontuario.create({
         data: {
@@ -94,7 +98,9 @@ class ProntuarioController {
           cns: parseInt(cns, 10),
           cpf: '',
           obs,
-          filename: file.filename,
+          // filename: file.filename,
+          filename: file.originalname,
+          file: `http://127.0.0.1:8080/public/temp/${file.originalname}`,
         },
       });
 
@@ -111,7 +117,8 @@ class ProntuarioController {
         console.log(error);
       }
 
-      return res.json({ Postgres: post, MongoDB: pront });
+      // return res.json({ Postgres: post, MongoDB: pront });
+      return res.json(post);
     });
   }
 

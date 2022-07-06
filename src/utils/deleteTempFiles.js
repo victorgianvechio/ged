@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import fs from 'fs';
 import path from 'path';
-import { tempDir } from '../utils/publicPaths';
+import { tempDir } from './publicPaths';
 
 export default function deleteTempFiles() {
   fs.readdir(tempDir, (err, files) => {

@@ -2,7 +2,9 @@
 
 import { PrismaClient } from '@prisma/client';
 import pdf2html from 'pdf2html';
-// import fs from 'fs';
+import fs from 'fs';
+
+import s3 from '../../app/modules/AWS/S3/index';
 
 import ProntuarioModel from '../../app/schemas/ProntuarioSchema';
 
@@ -11,7 +13,7 @@ const prisma = new PrismaClient();
 class ProntuarioController {
   async index(req, res) {
     if (Object.keys(req.query).length === 0) {
-      res.status(401).json({ error: 'Nenhum parâmetro informado' });
+      res.status(400).json({ error: 'Nenhum parâmetro informado' });
     }
 
     const { cns, paciente } = req.query;
@@ -32,7 +34,7 @@ class ProntuarioController {
           },
         },
       });
-      res.json(result);
+      res.status(200).json(result);
     }
     // return res.json({ result: 'ok' });
   }
@@ -65,7 +67,7 @@ class ProntuarioController {
     pdf2html.text(file.path, async (err, t) => {
       if (err) {
         console.error(`Conversion error: ${err}`);
-        return res.json({ err });
+        return res.status(500).json(err);
       }
 
       const text = t.replace(/\n/g, ' ');
@@ -90,35 +92,54 @@ class ProntuarioController {
       // const arquivo = fs.readFileSync(file.path);
       // console.log(arquivo);
 
-      // Salva no postgres
-      const post = await prisma.prontuario.create({
-        data: {
-          prontuario: parseInt(prontuario, 10),
-          paciente,
-          cns: parseInt(cns, 10),
-          cpf: '',
-          obs,
-          // filename: file.filename,
-          filename: file.originalname,
-          file: `http://127.0.0.1:8080/public/temp/${file.originalname}`,
-        },
-      });
-
-      // Salva no mongodb
-      const pront = new ProntuarioModel({
-        id: post.id,
-        text,
-        file,
-      });
-
       try {
+        // Envia arquivo para Amazon S3
+        // console.log('1- chamou readfile');
+        const arquivo = fs.readFileSync(file.path);
+        // console.log('2- finalizou readfile');
+        // console.log('3- chamou upload');
+        const result = await s3.upload(
+          arquivo,
+          `prontuarios/${file.originalname}`
+        );
+        // console.log('6- finalizou upload');
+
+        // Salva no postgres
+        // console.log('7- chamou postgres');
+        const post = await prisma.prontuario.create({
+          data: {
+            prontuario: parseInt(prontuario, 10),
+            paciente,
+            cns: parseInt(cns, 10),
+            cpf: '',
+            obs,
+            // filename: file.filename,
+            filename: file.originalname,
+            file: result.Location,
+          },
+        });
+        // console.log('8- finalizou postgres');
+
+        // Salva no mongodb
+        // console.log('9- chamou mongodb');
+        const pront = new ProntuarioModel({
+          id: post.id,
+          text,
+          file,
+        });
+
         await pront.save();
+
+        // console.log('10- finalizou mongodb');
+
+        return res.json(post);
       } catch (error) {
-        console.log(error);
+        console.log(err);
+        return res.status(500).json(error);
       }
 
       // return res.json({ Postgres: post, MongoDB: pront });
-      return res.json(post);
+      // return res.json(post);
     });
   }
 
@@ -132,7 +153,7 @@ class ProntuarioController {
         cpf,
       },
     });
-    res.json(post);
+    res.status(200).json(post);
   }
 
   async getByProntuario(req, res) {
@@ -144,21 +165,21 @@ class ProntuarioController {
     });
 
     if (!result) {
-      res.status(401).json({ error: 'Prontuario não encontrado' });
+      res.status(400).json({ error: 'Prontuario não encontrado' });
     }
 
-    res.json(result);
+    res.status(200).json(result);
   }
 
   async advancedSearch(req, res) {
     if (Object.keys(req.query).length === 0) {
-      res.status(401).json({ error: 'Nenhum parâmetro informado' });
+      res.status(400).json({ error: 'Nenhum parâmetro informado' });
     }
 
     const { terms } = req.query;
 
     if (!terms) {
-      res.status(401).json({ error: 'Nenhum termo informado' });
+      res.status(400).json({ error: 'Nenhum termo informado' });
     }
 
     //   ProntuarioModel.find({ occupation: /host/ })
@@ -180,7 +201,7 @@ class ProntuarioController {
     });
     console.log(result);
 
-    res.json(result);
+    res.status(200).json(result);
   }
 }
 

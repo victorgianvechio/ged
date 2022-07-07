@@ -7,11 +7,14 @@
     "dev:debug": "nodemon --inspect src/server.js",
     "eslint:fix": "yarn eslint --fix src --ext .js",
     "test:pdf": "sucrase-node test/pdfhtml.spec.js",
-    "test:mail": "sucrase-node test/mail.spec.js"
+    "test:mail": "sucrase-node test/mail.spec.js",
+    "test:s3-upload": "sucrase-node test/s3-upload.spec.js",
+    "test:s3-list": "sucrase-node test/s3-list.spec.js"
   },
   "dependencies": {
     "@prisma/client": "^3.15.2",
     "@sentry/node": "^7.5.1",
+    "aws-sdk": "^2.1169.0",
     "chalk": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
@@ -41,6 +44,7 @@
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "prisma": "^3.15.2",
+    "run-func": "^3.0.0",
     "sucrase": "^3.12.1"
   }
 }

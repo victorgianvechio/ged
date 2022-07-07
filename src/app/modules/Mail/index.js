@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 import nodemailer from 'nodemailer';
 import exphbs from 'express-handlebars';
 import nodemailerhbs from 'nodemailer-express-handlebars';

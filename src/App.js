@@ -31,9 +31,10 @@ class App {
     this.server.use(express.static('./public'));
     this.server.use('/public', express.static('./public'));
 
-    this.server.use(
-      morgan(`[:date] - :method [:status] :url - :response-time ms`)
-    );
+    // this.server.use(
+    //   morgan(`[:date] - :method [:status] :url - :response-time ms`)
+    // );
+    this.server.use(morgan('dev'));
   }
 
   routes() {

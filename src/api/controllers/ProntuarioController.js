@@ -126,6 +126,10 @@ class ProntuarioController {
           id: post.id,
           text,
           file,
+          prontuario: parseInt(prontuario, 10),
+          paciente,
+          cns: parseInt(cns, 10),
+          obs,
         });
 
         await pront.save();

@@ -1,0 +1,11 @@
+{
+  "mixers": [
+    {
+      "input": [
+        "./src/database/postgres.prisma",
+        "./src/app/Prontuario/Prontuario.prisma"
+      ],
+      "output": "prisma/schema.prisma"
+    }
+  ]
+}

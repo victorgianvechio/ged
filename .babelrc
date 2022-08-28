@@ -7,10 +7,8 @@
           "esmodules": true
         }
       }
-    ]
+    ],
+    "minify"
   ],
-  "comments": false,
-  "ignore": [
-    "src/test"
-  ]
+  "comments": false
 }

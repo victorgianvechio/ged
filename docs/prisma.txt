@@ -1,0 +1,12 @@
+1- Adicionar o caminho das models no arquivo prismix.config.json
+2- rodar o comando yarn prismix (vai criar o arquivo prisma/schema.prisma)
+3- então criar a migration
+
+Iniciar prisma no projeto
+  npx prisma init
+
+Criar migration
+  prisma migrate dev --name migration_name
+
+Criar seed
+  npx prisma seed

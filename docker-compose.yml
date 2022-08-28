@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    container_name: mongo
+    image: mongo:5.0.9
+    # restart: unless-stopped
+    restart: always
+    env_file: .env
+    environment:
+      # - MONGO_INITDB_ROOT_USERNAME=root
+      # - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=${MONGO_DB}
+      - MONGO_INITDB_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_PASSWORD=${MONGO_PASS}
+    ports:
+      - ${MONGO_PORT}:27017
+    volumes:
+      - mongodb_data_container:/data/db
+      # - ~/mongo:/data/db
+
+  postgres:
+    container_name: postgres
+    image: postgres:12
+    restart: always
+    env_file: .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres_data_container:/var/lib/postgresql/data
+
+volumes:
+  mongodb_data_container:
+  postgres_data_container:
+
+
+networks:
+  default:

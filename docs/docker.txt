@@ -1,0 +1,20 @@
+Lista todas as imagens
+  docker images -a
+
+Remover imagens
+  docker rmi id1 id2
+
+Listar containers
+  docker ps
+
+Criar container
+  docker-compose up -d
+
+Stop image
+  docker stop img_name
+
+Start image
+  docker start img_name
+
+Restart image
+  docker restart img_name

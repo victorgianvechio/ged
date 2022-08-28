@@ -33,6 +33,7 @@
     "camelcase": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
     "no-console": "off",
-    "no-throw-literal": "off"
+    "no-throw-literal": "off",
+    "jest/expect-expect": "off"
   }
 }

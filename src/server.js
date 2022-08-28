@@ -1,11 +1,11 @@
 import './lib/dotenv';
 import App from './App';
+import { createPublicDir } from './utils/utils'
 
 const port = process.env.PORT || process.env.APP_PORT;
-const URL = `${process.env.APP_URL}/api`;
 
-App.set('port', port);
+createPublicDir();
 
 App.listen(port, () => {
-  console.log(`GED API is running on ${URL}`);
+  console.log(`GED API is running`);
 });

@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules
+
+# Log files
+logs
+*.log
+
+# Distribution directory
+build
+dist
+
+# Docs
+docs
+
+# Tests
+test

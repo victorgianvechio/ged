@@ -1,16 +1,22 @@
 {
-  "name": "ged-final",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "ged",
+  "version": "1.0.1",
+  "description": "GeD - Gestão de Documentos",
+  "author": "Victor Gianvechio <victor.gianvecchio@live.com>",
+  "main": "src/server.js",
   "license": "MIT",
   "scripts": {
+    "app:setup-dev": "docker-compose up -d && yarn",
     "prismix": "prismix && prisma format",
     "seed": "sucrase-node prisma/seed.js",
     "dev": "yarn prismix && nodemon src/server.js",
     "prod": "yarn prismix && nodemon dist/server.js",
     "build": "rm -rf dist && babel src -d dist",
     "eslint:fix": "yarn eslint --fix src --ext .js",
-    "test": "jest -i"
+    "test": "jest -i",
+    "docker:stop": "docker stop mongo postgres",
+    "docker:start": "docker start mongo postgres",
+    "docker:restart": "docker restart mongo postgres"
   },
   "dependencies": {
     "@prisma/client": "^4.2.1",

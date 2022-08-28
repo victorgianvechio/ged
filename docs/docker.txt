@@ -18,3 +18,9 @@ Start image
 
 Restart image
   docker restart img_name
+
+Delete all images
+  docker system prune -a
+
+Criar imagem
+  docker build . -t image_name

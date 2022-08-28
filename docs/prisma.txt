@@ -9,4 +9,4 @@ Criar migration
   prisma migrate dev --name migration_name
 
 Criar seed
-  npx prisma seed
+  yarn seed

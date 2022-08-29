@@ -25,8 +25,8 @@ class App {
 
   routes() {
     // Default route
-    this.server.get('/', (req, res) => {
-      return res.status(200).json({ message: 'API is runnign' });
+    this.server.get('/api/v1', (req, res) => {
+      return res.status(200).json({ message: 'API is running' });
     });
 
     this.server.use('/api/v1/prontuario', prontuarioRoutes);

@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "app:setup-dev": "docker-compose up -d && yarn",
+    "app:nvm": "for /f usebackq %i in (`type .nvmrc`) do nvm use %i",
     "prismix": "prismix && prisma format",
     "seed": "sucrase-node prisma/seed.js",
     "dev": "yarn prismix && nodemon src/server.js",

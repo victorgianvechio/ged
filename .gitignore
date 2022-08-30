@@ -1,15 +1,9 @@
-# Dependency directory
 node_modules
-
-# Log files
 logs
 *.log
-
-# Environment files
 *.env
 *.env.development
 *.env.production
-
-# Distribution directories
 build
 dist
+public

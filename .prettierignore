@@ -1,6 +1,5 @@
-# Dependency directory
 node_modules
-
-# Distribution directories
 build
 dist
+public
+docs

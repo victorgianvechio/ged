@@ -1,16 +1,24 @@
-# Dependency directory
 node_modules
-
-# Log files
 logs
 *.log
-
-# Distribution directories
 build
 dist
-
-# Docs
 docs
-
-# Tests
 test
+*.env
+*.env.example
+*.env.development
+*.env.production
+.babelrc
+.editorconfig
+.eslintrc
+.eslintignore
+.gitignore
+.prettierrc
+.prettierignore
+.travis.yml
+docker-compose.yml
+dockerfile
+LICENSE
+nodemon.json
+.nvmrc

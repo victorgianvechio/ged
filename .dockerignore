@@ -1,11 +1,11 @@
-# Dependency directories
+# Dependency directory
 node_modules
 
 # Log files
 logs
 *.log
 
-# Distribution directory
+# Distribution directories
 build
 dist
 

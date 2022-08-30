@@ -1,4 +1,4 @@
-# Dependency directories
+# Dependency directory
 node_modules
 
 # Log files
@@ -7,7 +7,9 @@ logs
 
 # Environment files
 *.env
+*.env.development
+*.env.production
 
-# Distribution directory
+# Distribution directories
 build
 dist

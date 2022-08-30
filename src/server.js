@@ -7,5 +7,5 @@ const port = process.env.PORT || process.env.APP_PORT;
 createPublicDir();
 
 App.listen(port, () => {
-  console.log(`GED API is running on port ${port} - ${process.env.APP_PORT}`);
+  console.log(`[${process.env.NODE_ENV}] GED API is running on port ${port}`);
 });

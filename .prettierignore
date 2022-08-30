@@ -1,6 +1,6 @@
-# Dependency directories
+# Dependency directory
 node_modules
 
-# Distribution directory
+# Distribution directories
 build
 dist

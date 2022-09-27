@@ -12,6 +12,7 @@
     "seed": "sucrase-node prisma/seed.js",
     "dev": "set NODE_ENV=development&& yarn prismix && nodemon src/server.js",
     "prod": "set NODE_ENV=production&& yarn prismix && nodemon dist/server.js",
+    "prisma:reset": "npx prisma db push",
     "build": "babel src -d dist",
     "eslint:fix": "yarn eslint --fix src --ext .js",
     "test": "jest -i",

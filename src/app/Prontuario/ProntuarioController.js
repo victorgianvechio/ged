@@ -100,7 +100,7 @@ class ProntuarioController {
         // Salva no postgres
         const post = await prisma.prontuario.create({
           data: {
-            prontuario: parseInt(prontuario, 10),
+            nro_prontuario: parseInt(prontuario, 10),
             paciente,
             cns: parseInt(cns, 10),
             cpf: '',
@@ -139,7 +139,7 @@ class ProntuarioController {
     const { prontuario, paciente, cns, cpf } = req.body;
     const post = await prisma.prontuario.create({
       data: {
-        prontuario,
+        nro_prontuario: prontuario,
         paciente,
         cns,
         cpf,

@@ -1,9 +1,9 @@
 import multer from 'multer';
-import { tempDir } from '../utils/publicPaths';
+import { publicPath } from '../utils/utils';
 
 export default {
   storage: multer.diskStorage({
-    destination: tempDir,
+    destination: publicPath,
     filename: (req, file, cb) => {
       // cb(null, `${Date.now()}.pdf`);
       cb(null, `${file.originalname}`);

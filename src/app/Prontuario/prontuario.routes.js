@@ -10,9 +10,9 @@ const upload = multer(multerConfig);
 routes.get('/', ProntuarioController.index);
 routes.get('/:id', ProntuarioController.getByProntuario);
 routes.get('/advanced-search', ProntuarioController.advancedSearch);
-routes.post('/,', ProntuarioController.storeTest);
+routes.post('/', ProntuarioController.storeTest);
 routes.post(
-  '/prontuario-upload,',
+  '/prontuario-upload',
   upload.single('file'),
   ProntuarioController.store
 );

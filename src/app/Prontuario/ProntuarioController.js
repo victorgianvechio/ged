@@ -107,7 +107,7 @@ class ProntuarioController {
             obs,
             // filename: file.filename,
             filename: file.originalname,
-            file: result.Location,
+            url_doc: result.Location,
           },
         });
 

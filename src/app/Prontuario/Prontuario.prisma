@@ -5,7 +5,6 @@ model Prontuario {
   cns            Int?
   cpf            String?
   filename       String?  @default("")
-  file           String?  @default("")
   url_doc        String?  @default("")
   obs            String?  @default("")
   created_at     DateTime @default(now())
